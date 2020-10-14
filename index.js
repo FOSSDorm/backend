@@ -9,7 +9,7 @@ require('dotenv').config()
  * Initialise constants
  */
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8086 ;
 const HOST = process.env.HOSTNAME;
 
 /**
@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({extended:true}));
  * @param {string} path - relative path.
  * @method {string} author - The author of the book.
  */
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.send('FOSSDorm')
 });
 
