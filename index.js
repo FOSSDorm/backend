@@ -25,8 +25,11 @@ app.use(bodyParser.urlencoded({extended:true}));
  * @param {string} path - relative path.
  * @method {string} author - The author of the book.
  */
+app.get('/', (req, res) => {
+  res.send('Welcome to FOSSDorm!!')
+});
 app.get('/api', (req, res) => {
-  res.send('FOSSDorm')
+  res.send('FOSSDorm APIs')
 });
 
 /**
