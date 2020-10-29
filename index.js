@@ -1,16 +1,14 @@
-/**
- * import libraries/packages/functions 
- */
 const express = require('express')
 const bodyParser=require('body-parser')
 const cors=require('cors')
+const users=require('./routers/users/users');
 require('dotenv').config()
 /**
  * Initialise constants
  */
 const app = express();
 const PORT = process.env.PORT || 8086 ;
-const HOST = process.env.HOSTNAME;
+const HOST = process.env.HOSTNAME || "127.0.0.1";
 
 /**
  * Middleware
@@ -19,6 +17,7 @@ const HOST = process.env.HOSTNAME;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use('/users',users);
 
 /**
  * Define API at root path
@@ -27,9 +26,6 @@ app.use(bodyParser.urlencoded({extended:true}));
  */
 app.get('/', (req, res) => {
   res.send('Welcome to FOSSDorm!!')
-});
-app.get('/api', (req, res) => {
-  res.send('FOSSDorm APIs')
 });
 
 /**
