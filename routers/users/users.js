@@ -16,7 +16,7 @@ router.get("/oauth-callback", (req, res) => {
   const client_id = process.env.GITHUB_CLIENT_ID;
   const client_secret = process.env.GITHUB_CLIENT_SECRET;
   const code = req.query.code;
-
+  const website_url=process.env.WEBSITE_URL;
   // get OAuth access_token
   axios({
     method: "post",
@@ -27,7 +27,7 @@ router.get("/oauth-callback", (req, res) => {
   })
     .then((response) => {
       const access_token = response.data.access_token;
-      console.log(access_token);
+      // console.log(access_token);
       // get user detail and check if already registered or not
       axios
         .get("https://api.github.com/user", {
@@ -36,7 +36,7 @@ router.get("/oauth-callback", (req, res) => {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           // find user from database
           User.findOne({ username: response.data.login })
             .then((user) => {
@@ -47,7 +47,7 @@ router.get("/oauth-callback", (req, res) => {
                   { token: access_token }
                 )
                   .then((result) => {
-                    console.log(result);
+                    // console.log(result);
                     console.log("already signed up");
                     // generate encrypted token for further authentication
 
@@ -56,7 +56,7 @@ router.get("/oauth-callback", (req, res) => {
                     res.cookie("token", access_token);
                     res.redirect(
                       301,
-                      `http://localhost:3000/user/${response.data.login}/${isLoggedIn}`
+                      `${website_url}/user/${response.data.login}/${isLoggedIn}`
                     );
                   })
                   .catch((err) => {
@@ -64,7 +64,7 @@ router.get("/oauth-callback", (req, res) => {
                     let isLoggedIn = "failure";
                     res.redirect(
                       301,
-                      `http://localhost:3000/user/${response.data.login}/${isLoggedIn}`
+                      `${website_url}/user/${response.data.login}/${isLoggedIn}`
                     );
                   });
               } else {
@@ -77,14 +77,14 @@ router.get("/oauth-callback", (req, res) => {
                 user
                   .save()
                   .then((data) => {
-                    console.log(data);
+                    // console.log(data);
                     console.log("New user created");
 
                     let isLoggedIn = "success";
                     res.cookie("token", access_token);
                     res.redirect(
                       301,
-                      `http://localhost:3000/user/${response.data.login}/${isLoggedIn}`
+                      `${website_url}/user/${response.data.login}/${isLoggedIn}`
                     );
                   })
                   .catch((error) => {
@@ -92,7 +92,7 @@ router.get("/oauth-callback", (req, res) => {
                     let isLoggedIn = "failure";
                     res.redirect(
                       301,
-                      `http://localhost:3000/user/${response.data.login}/${isLoggedIn}`
+                      `${website_url}/user/${response.data.login}/${isLoggedIn}`
                     );
                   });
               }
@@ -112,15 +112,17 @@ router.get("/oauth-callback", (req, res) => {
  * Check if user is logged in or not
  */
 router.post("/auth", (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   let auth_token = req.body.auth_token;
   if (auth_token == null || auth_token == " " || auth_token == undefined) {
+    console.log("user not logged in");
     res.send({ isLoggedIn: false });
   } else {
-    console.log(auth_token);
+    // console.log(auth_token);
     User.findOne({ token: auth_token })
       .then((user) => {
         if (user) {
+          console.log("user logged in");
           res.send({ isLoggedIn: true, username: user.username });
         } else {
           res.send({ isLoggedIn: false });
@@ -130,8 +132,11 @@ router.post("/auth", (req, res) => {
   }
 });
 
+/**
+ * handle logout action
+ */
 router.get("/logout", (req, res) => {
-  console.log("logout request");
-  res.clearCookie("token").redirect(`http://localhost:3000`);
+  console.log("logout");
+  res.clearCookie("token").redirect(`${website_url}`);
 });
 module.exports = router;

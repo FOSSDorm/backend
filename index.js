@@ -15,11 +15,13 @@ const HOST = process.env.HOSTNAME || "127.0.0.1";
  * Middleware
  *
  */
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: process.env.WEBSITE_URL }));
+// app.use(cors());
+
 app.use(
   cookieParser({
-    httpOnly: false,
-    secure: false,
+    httpOnly: true,
+    secure: true,
     signed: true,
     secret: process.env.SECRET_KEYWORD,
   })
