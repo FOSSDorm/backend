@@ -55,7 +55,7 @@ router.get("/oauth-callback", (req, res) => {
 
                     res.cookie("token", access_token);
                     res.redirect(
-                      301,
+                      // 301,/
                       `${website_url}/user/${response.data.login}/${isLoggedIn}`
                     );
                   })
@@ -63,7 +63,7 @@ router.get("/oauth-callback", (req, res) => {
                     console.error(err);
                     let isLoggedIn = "failure";
                     res.redirect(
-                      301,
+                      // 301,
                       `${website_url}/user/${response.data.login}/${isLoggedIn}`
                     );
                   });
@@ -83,7 +83,7 @@ router.get("/oauth-callback", (req, res) => {
                     let isLoggedIn = "success";
                     res.cookie("token", access_token);
                     res.redirect(
-                      301,
+                      // 301,
                       `${website_url}/user/${response.data.login}/${isLoggedIn}`
                     );
                   })
@@ -91,7 +91,7 @@ router.get("/oauth-callback", (req, res) => {
                     console.error(error);
                     let isLoggedIn = "failure";
                     res.redirect(
-                      301,
+                      // 301,
                       `${website_url}/user/${response.data.login}/${isLoggedIn}`
                     );
                   });
@@ -136,6 +136,7 @@ router.post("/auth", (req, res) => {
  * handle logout action
  */
 router.get("/logout", (req, res) => {
+  const website_url=process.env.WEBSITE_URL;
   console.log("logout");
   res.clearCookie("token").redirect(`${website_url}`);
 });
