@@ -24,6 +24,7 @@ app.use(
     secure: false,
     signed: true,
     secret: process.env.SECRET_KEYWORD,
+    path:"/"
   })
 );
 app.use(bodyParser.json());

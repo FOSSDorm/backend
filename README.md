@@ -1,4 +1,4 @@
-<p align="center"><img src="public/logo512.png" alt="FOSSDorm" width="250" height="250"></p>
+<p align="center"><img src="assets/images/logo.png" alt="FOSSDorm" width="250" height="250"></p>
 <h1 align="center">FOSSDorm</h1>
 
 <div align="center">
@@ -52,7 +52,7 @@ Before setting up project locally, you must have the following tools installed o
 
 **1. Fork the backend repository**
 
-<p align="center"><img src="docs/images/readme/fork_the_repo.png" alt="Fork the repo" width="auto" height="auto"></p>
+<p align="center"><img src="assets/images/readme/fork_the_repo.png" alt="Fork the repo" width="auto" height="auto"></p>
 
 **2. Clone your own copy of repo**
 
@@ -64,18 +64,20 @@ Here replace `<username>` with your own github username
 **3. Install dependencies**
 
 ```
-cd frontend
+cd backend
 npm install
 ```
 **4. Set Up localhost database**
-If you're notablet ot install Robo 3T as v1.4 are ahving difficulty installing on linux, you can install v1.3 from snap srtreo.
-**4. Run site at localhost**
+
+**5. Add environment variables**
+
+**5. Run API server at localhost**
 
 ```
-npm start
+npm run dev
 ```
 If you're able to see website running at localhost, then you're ready to make change and contribute.
-<p align="center"><img src="docs/images/readme/localhost_run_successfully.png" alt="localhost site run successfully" width="auto" height="auto"></p>
+<p align="center"><img src="assets/images/readme/localhost_run_successfully.png" alt="localhost site run successfully" width="auto" height="auto"></p>
 
 ### Make changes and create pull request
 **1. Create your own branch and checkout**
@@ -93,7 +95,7 @@ Now, make sure you're on the new branch.
 git branch
 ```
 
-<p align="center"><img src="docs/images/readme/create_branch_checkout.png" alt="Create branch and checkout" width="auto" height="auto"></p>
+<p align="center"><img src="assets/images/readme/create_branch_checkout.png" alt="Create branch and checkout" width="auto" height="auto"></p>
 
 **2. Make changes**
 
@@ -105,24 +107,24 @@ Once you're done testing your new changes at localhost, save the work by running
 git add .
 git commit -m "<message>"
 ```
-Here replace `<message>` with a small description of your new changes. e.g. "add contact us page", "fix docs".
+Here replace `<message>` with a small description of your new changes. e.g. "add project api", "fix connection".
 
 **4. Push local changes to remote**
 ```
 git remote --set-upstream origin <new-branch-name>
 ```
 If you're prompted to enter GitHub username and password, enter your credential and you're ready to create a pull request.
-<p align="center"><img src="docs/images/readme/push_changes.png" alt="Push new changes" width="auto" height="auto"></p>
+<p align="center"><img src="assets/images/readme/push_changes.png" alt="Push new changes" width="auto" height="auto"></p>
 Next time, you can only run `git push` to push new changes to remote.
 
 **5. Create pull request**
 
 Once you push all changes to your remote GitHub server, go to your own GitHub account >> `frontend` repo and you'll see a notification of new changes.
 
-<p align="center"><img src="docs/images/readme/display_pull_request.png" alt="new changes notification" width="auto" height="auto"></p>
+<p align="center"><img src="assets/images/readme/display_pull_request.png" alt="new changes notification" width="auto" height="auto"></p>
 
 Click on the "Compare & pull request" and then open a pull request from the next page.
-<p align="center"><img src="docs/images/readme/open_pull_request.png" alt="open pull request" width="auto" height="auto"></p>
+<p align="center"><img src="assets/images/readme/open_pull_request.png" alt="open pull request" width="auto" height="auto"></p>
 Leave a comment if you want to add any message in detail.
 
 ## Contact Us
