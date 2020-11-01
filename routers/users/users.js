@@ -53,16 +53,10 @@ router.get("/oauth-callback", (req, res) => {
 
                     let isLoggedIn = "success";
 
-                    res.cookie("token", access_token,{
-                      httpOnly: false,
-                      secure: false,
-                      signed: true,
-                      secret: process.env.SECRET_KEYWORD,
-                      path:"/"
-                    });
+                    // res.cookie("token", access_token);
                     res.redirect(
                       // 301,/
-                      `${website_url}/user/${response.data.login}/${isLoggedIn}`
+                      `${website_url}/user/${response.data.login}/${isLoggedIn}/${access_token}`
                     );
                   })
                   .catch((err) => {
@@ -70,7 +64,7 @@ router.get("/oauth-callback", (req, res) => {
                     let isLoggedIn = "failure";
                     res.redirect(
                       // 301,
-                      `${website_url}/user/${response.data.login}/${isLoggedIn}`
+                      `${website_url}/user/${response.data.login}/${isLoggedIn}/${access_token}`
                     );
                   });
               } else {
@@ -87,16 +81,10 @@ router.get("/oauth-callback", (req, res) => {
                     console.log("New user created");
 
                     let isLoggedIn = "success";
-                    res.cookie("token", access_token,{
-                      httpOnly: false,
-                      secure: false,
-                      signed: true,
-                      secret: process.env.SECRET_KEYWORD,
-                      path:"/"
-                    });
+                    // res.cookie("token", access_token);
                     res.redirect(
                       // 301,
-                      `${website_url}/user/${response.data.login}/${isLoggedIn}`
+                      `${website_url}/user/${response.data.login}/${isLoggedIn}/${access_token}`
                     );
                   })
                   .catch((error) => {
@@ -104,7 +92,7 @@ router.get("/oauth-callback", (req, res) => {
                     let isLoggedIn = "failure";
                     res.redirect(
                       // 301,
-                      `${website_url}/user/${response.data.login}/${isLoggedIn}`
+                      `${website_url}/user/${response.data.login}/${isLoggedIn}/${access_token}`
                     );
                   });
               }
@@ -147,9 +135,9 @@ router.post("/auth", (req, res) => {
 /**
  * handle logout action
  */
-router.get("/logout", (req, res) => {
-  const website_url=process.env.WEBSITE_URL;
-  console.log("logout");
-  res.clearCookie("token").redirect(`${website_url}`);
-});
+// router.get("/logout", (req, res) => {
+//   const website_url=process.env.WEBSITE_URL;
+//   console.log("logout");
+//   res.clearCookie("token").redirect(`${website_url}`);
+// });
 module.exports = router;

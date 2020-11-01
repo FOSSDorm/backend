@@ -18,15 +18,15 @@ const HOST = process.env.HOSTNAME || "127.0.0.1";
 // app.use(cors({ origin: process.env.WEBSITE_URL }));
 app.use(cors());
 
-app.use(
-  cookieParser({
-    httpOnly: false,
-    secure: false,
-    signed: true,
-    secret: process.env.SECRET_KEYWORD,
-    path:"/"
-  })
-);
+// app.use(
+//   cookieParser({
+//     httpOnly: false,
+//     secure: false,
+//     signed: true,
+//     secret: process.env.SECRET_KEYWORD,
+//     path:"/"
+//   })
+// );
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/users", users);
