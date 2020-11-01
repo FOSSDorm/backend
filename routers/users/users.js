@@ -53,7 +53,13 @@ router.get("/oauth-callback", (req, res) => {
 
                     let isLoggedIn = "success";
 
-                    res.cookie("token", access_token);
+                    res.cookie("token", access_token,{
+                      httpOnly: false,
+                      secure: false,
+                      signed: true,
+                      secret: process.env.SECRET_KEYWORD,
+                      path:"/"
+                    });
                     res.redirect(
                       // 301,/
                       `${website_url}/user/${response.data.login}/${isLoggedIn}`
@@ -81,7 +87,13 @@ router.get("/oauth-callback", (req, res) => {
                     console.log("New user created");
 
                     let isLoggedIn = "success";
-                    res.cookie("token", access_token);
+                    res.cookie("token", access_token,{
+                      httpOnly: false,
+                      secure: false,
+                      signed: true,
+                      secret: process.env.SECRET_KEYWORD,
+                      path:"/"
+                    });
                     res.redirect(
                       // 301,
                       `${website_url}/user/${response.data.login}/${isLoggedIn}`
