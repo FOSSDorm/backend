@@ -40,8 +40,6 @@ We at FOSSDorm highly promotes the open source softwares and hence use them as w
   
 #### Special mention to [Fosshost](https://fosshost.org/), who provides free hosting to FOSS projects including FOSSDorm.
 
-## How To Use FOSSDorm platform?
-
 ## How To Contribute To FOSSDorm project (Backend)?
 
 ### Set up local environment
@@ -69,7 +67,15 @@ npm install
 ```
 **4. Set Up localhost database**
 
+Once you install MongoDB on your system, run it and copy the URI address.
+
 **5. Add environment variables**
+
+Create `.env` file at the root of your project with the following entries and its values:
+```
+MONGODB_URI=<your_monogodb_uri_copied_in_last_step>
+WEBSITE_URL="https://www.fossdorm.org"
+```
 
 **5. Run API server at localhost**
 
@@ -95,8 +101,6 @@ Now, make sure you're on the new branch.
 git branch
 ```
 
-<p align="center"><img src="assets/images/readme/create_branch_checkout.png" alt="Create branch and checkout" width="auto" height="auto"></p>
-
 **2. Make changes**
 
 Once you switch to a new branch, make changes you want.
@@ -114,18 +118,32 @@ Here replace `<message>` with a small description of your new changes. e.g. "add
 git remote --set-upstream origin <new-branch-name>
 ```
 If you're prompted to enter GitHub username and password, enter your credential and you're ready to create a pull request.
-<p align="center"><img src="assets/images/readme/push_changes.png" alt="Push new changes" width="auto" height="auto"></p>
-Next time, you can only run `git push` to push new changes to remote.
+
+Next time, you can only run `git push origin` to push new changes to remote.
 
 **5. Create pull request**
 
-Once you push all changes to your remote GitHub server, go to your own GitHub account >> `frontend` repo and you'll see a notification of new changes.
+Once you push all changes to your remote GitHub server, go to your own GitHub account >> `backend` repo and you'll see a notification of new changes.
 
 <p align="center"><img src="assets/images/readme/display_pull_request.png" alt="new changes notification" width="auto" height="auto"></p>
 
 Click on the "Compare & pull request" and then open a pull request from the next page.
 <p align="center"><img src="assets/images/readme/open_pull_request.png" alt="open pull request" width="auto" height="auto"></p>
 Leave a comment if you want to add any message in detail.
+
+### Update your local repo with parent repo
+
+To sync your local or remote repo with parent repo (from where you've forked), run commands:
+
+```
+git remote add upstream https://github.com/FOSSDorm/backend.git
+
+git pull upstream main
+
+```
+<br/> 
+
+**Note:** At localhost, you may find redirecting to production site in the login system. This happens as the GitHub OAuth callback is set to production site. To make it work on localhost, I need to change the callback url. Hence, currently, you may work on other components of website until I find its solution. 
 
 ## Contact Us
 If you've any doubt or want to ask any question, feel free to message us through [mail](mailto:sarru1291@gmail.com), [slack](https://join.slack.com/t/fossdorm/shared_invite/zt-imvn58kj-blkO4r49JHX58l9ioB0eAg), or [telegram](https://t.me/fossdorm).
